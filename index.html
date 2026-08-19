@@ -857,9 +857,20 @@
   hoursInput.addEventListener("input", function () {
     var total = parseFloat(hoursInput.value);
     var valid = !isNaN(total) && total > 0;
-    hoursCells.forEach(function (c) {
-      c.el.textContent = valid ? (Math.round(total * c.fraction * 2) / 2).toFixed(1) + "h" : "—";
-    });
+    if (!valid) {
+      hoursCells.forEach(function (c) { c.el.textContent = "—"; });
+      return;
+    }
+    var totalSlots = Math.max(0, Math.round(total * 2));
+    var raw = hoursCells.map(function (c) { return c.fraction * totalSlots; });
+    var base = raw.map(Math.floor);
+    var used = base.reduce(function (a, b) { return a + b; }, 0);
+    var remainder = totalSlots - used;
+    var order = raw
+      .map(function (v, i) { return { i: i, frac: v - base[i] }; })
+      .sort(function (a, b) { return b.frac - a.frac; });
+    for (var k = 0; k < remainder && k < order.length; k++) { base[order[k].i]++; }
+    hoursCells.forEach(function (c, i) { c.el.textContent = (base[i] * 0.5).toFixed(1) + "h"; });
   });
 
   // ---------- units ----------
