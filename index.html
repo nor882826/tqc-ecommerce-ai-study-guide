@@ -1,0 +1,1115 @@
+<title>電商證照備課大綱</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    color-scheme: light;
+    --surface:     #f9f9f7;
+    --card:        #fcfcfb;
+    --ink:         #0b0b0b;
+    --ink-2:       #52514e;
+    --ink-muted:   #898781;
+    --hairline:    #e1e0d9;
+    --border:      rgba(11,11,11,0.10);
+    --accent-ring: #c23a3a;
+    --accent-bg:   #fbeceb;
+
+    --c1: #2a78d6; --c1-tint: #eaf1fb;
+    --c2: #d1592a; --c2-tint: #fbeee7;
+    --c3: #14966a; --c3-tint: #e7f5ef;
+    --c4: #b8860a; --c4-tint: #faf3df;
+    --c5: #c14a78; --c5-tint: #fbedf2;
+    --c6: #2f7a2f; --c6-tint: #edf5ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --surface:     #0d0d0d;
+      --card:        #1a1a19;
+      --ink:         #ffffff;
+      --ink-2:       #c3c2b7;
+      --ink-muted:   #898781;
+      --hairline:    #2c2c2a;
+      --border:      rgba(255,255,255,0.12);
+      --accent-ring: #e66767;
+      --accent-bg:   #2a1615;
+
+      --c1: #3987e5; --c1-tint: #14202f;
+      --c2: #d95926; --c2-tint: #2a1c10;
+      --c3: #199e70; --c3-tint: #0f2620;
+      --c4: #c98500; --c4-tint: #2a2110;
+      --c5: #d55181; --c5-tint: #2a151e;
+      --c6: #3fb53f; --c6-tint: #142616;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface:     #0d0d0d;
+    --card:        #1a1a19;
+    --ink:         #ffffff;
+    --ink-2:       #c3c2b7;
+    --ink-muted:   #898781;
+    --hairline:    #2c2c2a;
+    --border:      rgba(255,255,255,0.12);
+    --accent-ring: #e66767;
+    --accent-bg:   #2a1615;
+
+    --c1: #3987e5; --c1-tint: #14202f;
+    --c2: #d95926; --c2-tint: #2a1c10;
+    --c3: #199e70; --c3-tint: #0f2620;
+    --c4: #c98500; --c4-tint: #2a2110;
+    --c5: #d55181; --c5-tint: #2a151e;
+    --c6: #3fb53f; --c6-tint: #142616;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  }
+  h1, h2, h3 { font-family: "Noto Serif TC", "Noto Sans TC", serif; }
+
+  a { color: inherit; }
+
+  /* ---------- Top bar ---------- */
+  #topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in oklab, var(--card) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .topbar-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .brand { display: flex; flex-direction: column; gap: 1px; margin-right: 6px; }
+  .brand .name { font-size: 15px; font-weight: 900; font-family: "Noto Serif TC", serif; }
+  .brand .sub { font-size: 11px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+
+  .search-wrap { position: relative; flex: 1 1 180px; min-width: 140px; max-width: 260px; }
+  .search-wrap input {
+    width: 100%;
+    padding: 7px 12px 7px 30px;
+    border-radius: 8px;
+    border: 1px solid var(--hairline);
+    background: var(--surface);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+  }
+  .search-wrap input:focus { border-color: var(--c1); }
+  .search-wrap svg { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); opacity: 0.5; pointer-events: none; }
+
+  .toolbtn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 12px; border-radius: 8px;
+    border: 1px solid var(--hairline);
+    background: var(--surface); color: var(--ink-2);
+    font-family: inherit; font-size: 12.5px; font-weight: 500;
+    cursor: pointer; white-space: nowrap;
+  }
+  .toolbtn:hover { border-color: var(--ink-muted); color: var(--ink); }
+  .toolbtn.active { background: var(--accent-bg); border-color: var(--accent-ring); color: var(--accent-ring); }
+
+  .jumpnav { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+  .jumpchip {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 9px; border-radius: 999px;
+    border: 1px solid var(--hairline);
+    background: var(--surface);
+    font-family: inherit;
+    font-size: 11.5px; font-weight: 700;
+    text-decoration: none;
+    color: var(--ink-2);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .jumpchip .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .jumpchip:hover { border-color: var(--ink-muted); color: var(--ink); }
+  .jumpchip.active { background: var(--ink); border-color: var(--ink); color: var(--card); }
+  .jumpchip.active .dot { outline: 2px solid var(--card); outline-offset: 1px; }
+
+  /* ---------- Page ---------- */
+  #page { max-width: 980px; margin: 0 auto; padding: 28px 24px 80px; }
+
+  .hero { margin-bottom: 26px; }
+  .hero .eyebrow {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px;
+  }
+  .hero h1 { font-size: 26px; font-weight: 900; margin: 0 0 8px; line-height: 1.3; text-wrap: balance; }
+  .hero p { font-size: 14px; color: var(--ink-2); line-height: 1.8; max-width: 62ch; margin: 0; }
+
+  /* ---------- Weight table ---------- */
+  .plan-table {
+    margin-top: 22px;
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card);
+  }
+  .plan-row {
+    display: grid;
+    grid-template-columns: 22px 1.4fr 62px 78px 62px 58px 78px;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-top: 1px solid var(--hairline);
+    font-size: 12.5px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .plan-row .hours-cell { font-weight: 700; color: var(--ink); }
+  .plan-row:first-child .hours-cell { font-weight: 700; color: var(--ink-muted); }
+
+  .hours-wrap {
+    display: flex; align-items: center; gap: 8px;
+    margin: 18px 0 -6px;
+    font-size: 12.5px; color: var(--ink-2);
+  }
+  .hours-wrap input {
+    width: 64px;
+    padding: 5px 8px;
+    border-radius: 7px;
+    border: 1px solid var(--hairline);
+    background: var(--card);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .hours-wrap input:focus { outline: none; border-color: var(--c1); }
+  .plan-row:first-child { border-top: none; background: color-mix(in oklab, var(--ink) 4%, var(--card)); font-weight: 700; color: var(--ink-muted); font-size: 11px; letter-spacing: .03em; }
+  .plan-row:not(:first-child):hover { background: color-mix(in oklab, var(--ink) 3%, var(--card)); }
+  .plan-row .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .plan-row .name { font-weight: 700; }
+  .plan-row .num { font-variant-numeric: tabular-nums; text-align: right; color: var(--ink-2); }
+  .weightbar { grid-column: 1 / -1; height: 6px; border-radius: 4px; background: var(--hairline); overflow: hidden; margin: 0 16px 12px; display: flex; }
+  .weightbar span { height: 100%; }
+
+  /* ---------- Unit sections ---------- */
+  .unit {
+    margin-top: 44px;
+    scroll-margin-top: 84px;
+  }
+  .unit-head {
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    padding-bottom: 14px; margin-bottom: 18px;
+    border-bottom: 3px solid var(--u-color);
+  }
+  .unit-head .idx {
+    font-family: "Noto Serif TC", serif;
+    font-size: 13px; font-weight: 700; color: var(--u-color);
+    border: 1.5px solid var(--u-color); border-radius: 50%;
+    width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+    flex: none;
+  }
+  .unit-head h2 { font-size: 20px; font-weight: 900; margin: 0; flex: 1 1 auto; min-width: 200px; }
+  .unit-meta { font-size: 12px; color: var(--ink-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .unit-copy {
+    border: 1px solid var(--hairline); background: var(--card); color: var(--ink-2);
+    border-radius: 7px; padding: 5px 10px; font-size: 11.5px; cursor: pointer; font-family: inherit;
+  }
+  .unit-copy:hover { border-color: var(--u-color); color: var(--u-color); }
+
+  .subgrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .unit.single .subgrid { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px) { .unit.single .subgrid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 700px) { .subgrid, .unit.single .subgrid { grid-template-columns: 1fr; } }
+
+  .back-to-overview {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink-muted);
+    background: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 0 0 16px;
+  }
+  .back-to-overview:hover { color: var(--ink); }
+  body.tab-single .back-to-overview { display: inline-flex; }
+  body.tab-single #plan-table, body.tab-single .hero, body.tab-single .hours-wrap { display: none; }
+
+  .subcard {
+    background: var(--u-tint);
+    border: 1px solid color-mix(in oklab, var(--u-color) 30%, var(--hairline));
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .subcard h3 {
+    font-size: 13.5px; font-weight: 700; margin: 0 0 10px;
+    color: var(--ink);
+    font-family: "Noto Sans TC", sans-serif;
+  }
+  .subcard ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .subcard li { font-size: 12.5px; line-height: 1.6; color: var(--ink-2); }
+  .subcard li b { color: var(--ink); font-weight: 700; }
+  .subcard li .star { color: var(--accent-ring); margin-right: 2px; }
+  .subcard li.hot { background: var(--accent-bg); margin: 0 -8px; padding: 4px 8px; border-radius: 6px; }
+
+  .pt-row { position: relative; }
+  .subcard li.expandable { cursor: pointer; }
+  .subcard li.expandable:hover .pt-row { background: color-mix(in oklab, var(--u-color) 8%, transparent); }
+  .subcard li.expandable:focus-visible { outline: 2px solid var(--u-color); outline-offset: 2px; border-radius: 5px; }
+  .subcard li.expandable .pt-row {
+    padding: 2px 44px 2px 4px;
+    margin: -2px -4px;
+    border-radius: 6px;
+  }
+  .expand-mark {
+    position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex; align-items: center; gap: 3px;
+    color: var(--u-color);
+    background: color-mix(in oklab, var(--u-color) 14%, transparent);
+    border-radius: 999px;
+    padding: 1px 7px 1px 6px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .expand-mark .chev { display: inline-block; transition: transform 0.15s ease; }
+  .subcard li.expanded .expand-mark .chev { transform: rotate(180deg); }
+
+  .subcard li .sub-terms {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 8px 0 2px 12px;
+    border-left: 2px solid color-mix(in oklab, var(--u-color) 45%, var(--hairline));
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .subcard li.expanded .sub-terms { display: flex; }
+  .subcard .sub-terms li { font-size: 12px; color: var(--ink-2); cursor: default; }
+  .subcard .sub-terms li b { color: var(--u-color); font-weight: 700; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .expand-mark { transition: transform 0.15s ease; }
+  }
+
+  .pt-mark { display: none; }
+  li.pt-dim { opacity: 0.28; }
+  li.pt-match { outline: 2px solid var(--c1); outline-offset: 2px; border-radius: 5px; }
+
+  #no-results { display: none; text-align: center; color: var(--ink-muted); font-size: 13px; padding: 60px 0; }
+
+  footer {
+    max-width: 980px; margin: 40px auto 0; padding: 20px 24px 40px;
+    border-top: 1px solid var(--hairline);
+    font-size: 11.5px; color: var(--ink-muted); line-height: 1.9;
+  }
+
+  @media print {
+    #topbar { position: static; }
+    .jumpnav, .search-wrap, #btn-hot, #btn-copyall, .unit-copy, #btn-expand-terms, .hours-wrap { display: none !important; }
+    .expand-mark { display: none !important; }
+    .subcard li .sub-terms { display: flex !important; }
+    body { background: #fff; color: #000; }
+    body.tab-single #plan-table, body.tab-single .hero, body.tab-single .hours-wrap { display: none; }
+  }
+</style>
+
+<div id="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="name">電商證照備課大綱</div>
+      <div class="sub" id="stat-line">載入中…</div>
+    </div>
+    <div class="search-wrap">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="search" type="text" placeholder="搜尋知識點、專有名詞…" autocomplete="off">
+    </div>
+    <button class="toolbtn" id="btn-hot">★ 只看易混淆重點</button>
+    <button class="toolbtn" id="btn-expand-terms">▾ 展開全部名詞說明</button>
+    <button class="toolbtn" id="btn-copyall">複製全部大綱</button>
+    <nav class="jumpnav" id="jumpnav"></nav>
+  </div>
+</div>
+
+<div id="page">
+  <button class="back-to-overview" id="btn-back">← 回總覽（看全部6單元）</button>
+  <div class="hero">
+    <div class="eyebrow">TQC 電子商務與AI應用-專業級・備課參考</div>
+    <h1>把 280 題題庫，整理成可以直接拿去排課的大綱</h1>
+    <p id="hero-desc">依 6 大類、37 個子主題整理知識點，附建議授課比重，帶 ★ 的是題庫中特別容易混淆或高頻出現的重點，排課時可以多留一點時間。</p>
+  </div>
+
+  <div class="hours-wrap">
+    <label for="hours-input">總授課時數</label>
+    <input type="number" id="hours-input" min="0" step="0.5" placeholder="例如 18">
+    <span>小時 → 下表自動換算各單元建議時數</span>
+  </div>
+  <div class="plan-table" id="plan-table"></div>
+
+  <div id="units"></div>
+  <div id="no-results">沒有符合「<span id="no-results-q"></span>」的知識點</div>
+
+  <footer>
+    資料來源：CSF 雲端練功坊「電子商務與AI應用-專業級」練習題庫（EG326）題目解析內容整理，共 <span id="foot-total">280</span> 題。知識點文字為AI依題庫內容摘要整理，正式授課前建議對照原始題目複核。
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var DATA = [
+    {
+      name: "電子商務概念與AI驅動應用", short: "概念與AI", count: 70, key: "c1",
+      subtopics: [
+        { name: "電商基礎定義與發展趨勢", points: [
+          ["電商完整定義", "涵蓋瀏覽、下單、付款、配送、售後全流程，非僅指B2B或純線下交易。", 0],
+          ["優勢與隱藏成本", "電商突破時空限制，但仍需採購、物流、金流、行銷、技術等成本投入。", 0],
+          ["發展史關鍵年代", "1970年代EDI電子資料交換起源；1990年代中後期Amazon、eBay等平台崛起。", 0],
+          ["行動商務 M-Commerce", "透過手機、平板等行動裝置完成交易，不必搭配實體店鋪。", 0],
+          ["Web 3.0", "去中心化網路，核心為區塊鏈、智慧合約、NFT與加密貨幣，衍生新型支付模式。", 1],
+          ["電商三大趨勢", "虛實整合、社群商務、短影音直播、跨境電商；EDI屬過去技術，不算當代趨勢。", 1],
+          ["跨境電商四挑戰", "多語言翻譯、跨國支付系統、物流與稅務、各國消費者偏好差異。", 0]
+        ]},
+        { name: "電商商業模式分類（核心易混淆）", points: [
+          ["B2C", "企業對消費者，如Amazon、PChome、momo。", 1],
+          ["B2B", "企業對企業的採購交易模式。", 1],
+          ["C2C", "消費者對消費者，如蝦皮、Yahoo拍賣。", 1],
+          ["C2B", "消費者需求導向，接單後才生產。", 1],
+          ["D2C", "品牌直營，省略中間商，維持品牌體驗一致。", 1],
+          ["O2O", "Online to Offline，線上導流帶動線下體驗，如KKday。", 1],
+          ["OMO", "Online Merge Offline，O2O的升級版，以消費者為核心整合虛實通路。", 1],
+          ["複合模式判讀", "如UberEats同時具B2C、B2B、O2O特徵，須拆解各角色關係。", 0]
+        ]},
+        { name: "永續電商與ESG", points: [
+          ["永續電商核心精神", "落實ESG，兼顧環境、社會、治理，非短視逐利。", 0],
+          ["E 環境面", "節能減碳、綠色供應鏈、碳足跡追蹤、綠色包裝。", 1],
+          ["S 社會面", "利害關係人權益：員工、顧客、社區責任。", 1],
+          ["G 治理面", "公司治理健全、股東權益、資訊透明公開。", 1],
+          ["AI於永續電商應用", "預測需求、優化配送路線、倉儲節能。", 0]
+        ]},
+        { name: "AI客服與個人化行銷", points: [
+          ["AI智慧客服定位", "自動化即時回應，非完全取代真人服務。", 0],
+          ["語音助理三核心技術", "語音辨識＋NLP自然語言處理＋NLU自然語言理解。", 0, [
+            ["語音辨識 ASR", "Automatic Speech Recognition，把使用者的語音轉換成文字。"],
+            ["NLP", "Natural Language Processing，自然語言處理，讓系統能理解、轉換人類語言的整體技術範疇。"],
+            ["NLU", "Natural Language Understanding，自然語言理解，讓系統讀懂文字背後真正的語意與意圖。"]
+          ]],
+          ["AI Chatbot優點", "全年無休、自動回覆、節省人力。", 0],
+          ["情感分析", "判斷顧客語氣調整回應風格，屬NLU／NLG範疇。", 0],
+          ["Chatbot技術路線", "規則式／知識庫式（Rule-Based／Knowledge-Based）不需大量資料訓練但需知識萃取；機器學習／NLP式需大量資料訓練才能提高語意理解準確度。", 1],
+          ["推薦演算法二分法", "內容過濾（依商品屬性）vs 協同過濾（依眾人行為，分User/Item-based）。", 1, [
+            ["內容過濾 Content-based", "依商品本身的屬性特徵（如類別、標籤）推薦相似商品，不依賴其他使用者行為。"],
+            ["協同過濾 Collaborative Filtering", "依眾人行為模式推薦，再細分User-based（找相似使用者）與Item-based（找相似商品）。"]
+          ]],
+          ["冷啟動問題", "協同過濾／深度學習依賴歷史資料，缺資料時效果差；熱銷排行不受此限。", 1],
+          ["精準行銷與行為分析", "依地理、年齡、興趣、購買紀錄差異化投放；靠Cookies追蹤瀏覽點擊。", 0],
+          ["動態定價 Dynamic Pricing", "依需求、庫存、競品、顧客行為自動調價，常見於航空、旅館、電商。", 1],
+          ["AI市場預測", "結合天氣、節慶、社群聲量等多變數預測銷售。", 0]
+        ]},
+        { name: "沉浸式技術與元宇宙", points: [
+          ["AR擴增實境", "手機鏡頭疊加虛擬商品於現實畫面，如試妝、家具擺放預覽。", 1],
+          ["VR虛擬實境", "頭戴顯示器進入虛擬商店，沉浸式試穿。", 1],
+          ["沉浸式體驗價值", "增加停留時間與互動，提高轉換率。", 0],
+          ["元宇宙 Metaverse", "三維社交購物空間，用戶以Avatar虛擬化身互動購物。", 1],
+          ["元宇宙電商整合技術", "VR沉浸環境＋AI客服對話＋電子支付；觸覺回饋Haptic提升真實感。", 0]
+        ]},
+        { name: "AI辨識技術與跨境電商應用", points: [
+          ["視覺搜尋 Visual Search", "上傳圖片以AI影像辨識找相似商品，核心技術為CNN卷積神經網路。", 1],
+          ["語音購物 Voice Commerce", "語音下單，仰賴ASR語音辨識＋NLU語意理解兩者協作。", 1],
+          ["跨境電商定義", "不同國家間商品服務交易，含付款、物流、報關。", 0],
+          ["AI多語言翻譯效益", "打破語言障礙，提升溝通速度與準確度，屬NLP範疇。", 0],
+          ["在地化AI行銷 Localization", "不只翻譯，還含文化在地化的行銷優化，屬進階應用。", 0],
+          ["翻譯技術演進", "詞典比對／規則式 → Transformer架構／LLM，能理解上下文語意。", 0]
+        ]}
+      ]
+    },
+    {
+      name: "電子商務資訊流、金流與物流", short: "金流與物流", count: 42, key: "c2",
+      subtopics: [
+        { name: "網路基礎架構", points: [
+          ["網路規模分類", "PAN個人區域網／LAN區域網／MAN都會網路／WAN廣域網路。", 1, [
+            ["PAN", "Personal Area Network，個人區域網路，範圍最小（如藍牙裝置間）。"],
+            ["LAN", "Local Area Network，區域網路，如辦公室、校園內部網路。"],
+            ["MAN", "Metropolitan Area Network，都會區域網路，涵蓋一個城市範圍。"],
+            ["WAN", "Wide Area Network，廣域網路，範圍最大，如網際網路本身。"]
+          ]],
+          ["網路拓撲四型", "星型／匯流排／環型／樹型；環型單點故障會癱瘓整個環路。", 1, [
+            ["星型拓樸", "所有設備連接中心節點；非中心節點故障不會影響其他設備通訊。"],
+            ["匯流排拓樸", "所有設備共用同一條主線；優點是佈線簡單、成本較低。"],
+            ["環型拓樸", "各節點首尾相連成一圈，資料沿環路逐站傳遞；任一節點或線路故障常導致整個環路中斷。"],
+            ["樹型拓樸", "階層式主幹＋分支結構；主幹總線故障可能影響整個網路正常運作。"]
+          ]],
+          ["NOS網路作業系統", "縮寫NOS（Network Operating System）；Linux是一種NOS，商業版本（如Red Hat Enterprise Linux）不一定免費。", 0],
+          ["TCP/IP分層", "傳輸層用TCP／UDP處理資料傳輸；資料連結層處理MAC位址；應用層含HTTP。", 0],
+          ["防火牆 vs VPN", "防火牆是邊界安全屏障監控封包；VPN在公開網路上建立加密通道。", 1, [
+            ["防火牆 Firewall", "監控、篩選、控制網路封包進出，在內部網路與外部網路（如網際網路）之間建立安全屏障。"],
+            ["VPN 虛擬私人網路", "在公開網路之上建立一個「加密的通道」，保護傳輸中的資料，不是邊界防禦。"]
+          ]],
+          ["Wi-Fi 6", "802.11ax，OFDMA技術，1024-QAM調變，速度優於Wi-Fi 5（802.11ac）。", 0],
+          ["Starlink低軌衛星", "LEO低軌道，延遲低於傳統高軌衛星。", 0]
+        ]},
+        { name: "電商雲端架構", points: [
+          ["Headless Commerce", "前後端分離架構，前端展示層與後端商務邏輯分離。", 0],
+          ["CDN內容傳遞網路", "地理分散伺服器，就近快取內容，非中央集權。", 0],
+          ["API串接", "目的是減少重複開發、加速整合第三方服務。", 0],
+          ["雲端服務模式", "IaaS基礎架構即服務／PaaS平台即服務／SaaS軟體即服務／AIaaS人工智慧即服務。", 1, [
+            ["IaaS", "Infrastructure as a Service，雲端業者提供虛擬機、儲存空間與網路等「基礎架構」資源，企業按需租用。"],
+            ["PaaS", "Platform as a Service，提供統一應用程式開發／執行環境，服務商集中管理維護。"],
+            ["SaaS", "Software as a Service，網路交付、免安裝、訂閱付費的完整軟體服務。"],
+            ["AIaaS", "AI as a Service，雲端業者提供模型推論、影像辨識、語音辨識、聊天機器人等AI能力，透過API或平台直接使用。"]
+          ]],
+          ["雲端服務供應商", "AWS、Azure、GCP；TikTok不是雲端供應商。", 0],
+          ["NAS網路儲存裝置", "檔案儲存分享用途。", 0]
+        ]},
+        { name: "新興支付與加密資產", points: [
+          ["支付主管機關", "電子支付＝金管會；第三方支付＝數位發展部。", 1, [
+            ["電子支付", "主管機關為金融監督管理委員會（金管會），用於平時交易或轉帳。"],
+            ["第三方支付", "在台灣的主管機關為數位發展部，如綠界科技。"]
+          ]],
+          ["行動支付／第三方支付", "可綁信用卡與金融卡，非僅限信用卡。", 0],
+          ["區塊鏈核心特性", "分散式帳本、去中心化、不可篡改、透明可追溯、共識機制驗證交易。", 0],
+          ["穩定幣", "與特定資產（如美元）掛鉤；比特幣不是穩定幣。", 1],
+          ["NFT非同質化代幣", "獨特識別碼不可分割替代；比特幣是同質化代幣，兩者常互為考點。", 1],
+          ["SSL／TLS／SET比較", "SSL已被TLS取代但仍慣稱SSL，護傳輸安全；SET護交易身分完整性。", 1, [
+            ["SSL／TLS", "確保網際網路連線安全的協定，透過加密保護傳輸資料，防止竊取竄改；SSL已由更安全的TLS取代，但習慣上仍常稱SSL。"],
+            ["SET", "Secure Electronic Transaction，主要保護交易各方「身分與完整性」，而非傳輸過程本身。"]
+          ]],
+          ["BNPL先買後付", "延遲付款，非銀行專屬服務，仍屬信用交易，不強制要有信用卡。", 0],
+          ["NFC近距離支付組成", "NFC天線／安全元件晶片／終端讀卡機，不需要Wi-Fi。", 0],
+          ["信用卡四方參與者", "B2C交易信用卡支付的主要參與者：持卡人／商家／發卡銀行／收單銀行。", 0],
+          ["訂閱制／訂閱經濟", "Subscription Economy，以「使用權取代擁有權」為核心理念，如Netflix；能為企業帶來穩定現金流。", 0]
+        ]},
+        { name: "B2B金流機制", points: [
+          ["EFT電子資金轉帳", "B2B電商常用付款方式。", 0],
+          ["ACH自動結算中心", "三類交易：直接存款／直接付款／消費者付款，費用較支票電匯低。", 0],
+          ["ePayables應付帳款數位化", "用虛擬信用卡取代傳統支票電匯。", 0],
+          ["EBPP系統", "電子帳單呈現與付款系統，整合帳單呈現、處理、傳送、支付。", 0]
+        ]},
+        { name: "跨境電商金流", points: [
+          ["跨境收款平台", "PayPal、Payoneer、Airwallex、Wise；台灣Pay不是跨境收款平台。", 0],
+          ["平台效益", "匯率較優、費用較低、不靠SWIFT，但仍須依法繳稅。", 0]
+        ]},
+        { name: "智慧物流與AI應用", points: [
+          ["逆物流", "商品從消費者返回供應商的流程，方向易與正向物流混淆。", 0],
+          ["QR Code vs RFID", "QR成本低適合個人；RFID適合大規模自動化，但成本高、易受金屬水源干擾。", 1, [
+            ["QR Code", "成本低、易於使用智慧型手機掃描，適合個人消費者應用。"],
+            ["RFID", "需大規模自動化追蹤、遠距離掃描、一次讀取多個標籤時效率更高，如庫存管理、供應鏈物流；但成本較高，且可能受金屬或水源干擾。"]
+          ]],
+          ["包裹追蹤系統", "可使用物聯網（IoT）技術；GPS系統可即時掌握運輸工具位置。", 1],
+          ["無人配送六大技術", "感測技術、AI（導航規劃）、無人機、無人駕駛車輛、機器人（取件配送）、通訊系統（防駭防洩）。", 0],
+          ["AI冷鏈物流應用", "路徑優化、溫濕度監測、需求預測，但無法達100%正確配送。", 0],
+          ["智慧倉儲技術", "AMR自動移動機器人／AGV無人搬運車／WMS倉儲管理系統／WCS倉儲控制系統。", 0],
+          ["第三方 vs 第四方物流", "第三方實際執行物流；第四方不實際承擔運作，是供應鏈整合者。", 1, [
+            ["第三方物流 3PL", "實際承擔並執行具體的物流運作（倉儲、配送等）。"],
+            ["第四方物流 4PL", "不實際承擔具體物流運作，而是整合多個第三方物流資源的供應鏈整合者。"]
+          ]]
+        ]}
+      ]
+    },
+    {
+      name: "電子商務倫理及社會議題", short: "倫理與法規", count: 42, key: "c3",
+      subtopics: [
+        { name: "隱私權與個資保護", points: [
+          ["隱私權當代意義", "不只是保密，涉及數位尊嚴與自主權。", 0],
+          ["GDPR七大原則", "適法公平透明、目的限制、資料最少化、準確性、儲存限制、完整機密、當責。", 1],
+          ["資料可攜權", "可取得並轉移個人資料至其他控制者；同類當事人權利還有查詢權、被遺忘權、拒絕權。", 0],
+          ["PDPC個資保護委員會", "我國擬設集中監管機關，與GDPR接軌。", 0],
+          ["數位足跡 Digital Footprint", "瀏覽紀錄、線上輸入資料（生日／城市／信用卡號）、社群按讚紀錄皆屬之；實體現金購物的紙本簽名不算。", 0],
+          ["同意管理 Consent Management", "Cookie同意須事前、清楚、可撤回；正式概念稱為「同意管理」，非僅Cookie彈窗。", 0],
+          ["推定同意的爭議", "個資法第7條，未拒絕不等於同意，此推定削弱使用者自主權。", 1],
+          ["合理隱私期待", "網頁瀏覽紀錄隱私期待高於公開發文。", 0],
+          ["個資法第41條", "不當利用個資營利：意圖不法利益＋未同意或逾越目的。", 0]
+        ]},
+        { name: "資料治理", points: [
+          ["資料治理定義", "制度規範，非單純技術工具。", 0],
+          ["Data Steward 資料託管人", "特定資料領域的主題專家（Subject Matter Expert, SME），負責日常資料品質管控。", 0],
+          ["企業推動資料治理目的", "風險法遵、效率永續、溝通與釋放資料價值。", 0]
+        ]},
+        { name: "智慧財產權", points: [
+          ["著作權 vs 工業財產權", "著作權護表達，如小說；工業財產權護專利、商標、地理標示。", 1, [
+            ["著作權 Copyright", "保護創作的「表達」本身，如小說、音樂、程式碼，不保護背後的思想或概念。"],
+            ["工業財產權 Industrial Property", "保護專利、商標、地理標示等與產業應用相關的權利，需申請登記取得。"]
+          ]],
+          ["屬地原則", "專利、商標效力僅限申請／註冊國，不自動全球生效。", 1],
+          ["著作權僅護表達不護思想", "著作權法第10條之1。", 1],
+          ["專利權本質是排他權", "非政府賦予的義務。", 0],
+          ["我國專利三種類", "發明、新型、設計；著作不算專利。", 0],
+          ["智財權範圍", "專利、著作、商標、營業秘密。", 0]
+        ]},
+        { name: "資訊倫理與網路犯罪", points: [
+          ["資訊倫理定義", "適用所有使用者，非僅工程師。", 0],
+          ["未授權存取機密資料庫", "違反刑法妨害電腦使用罪。", 0],
+          ["網路發文倫理責任", "匿名或刪文不免責。", 0],
+          ["網路詐欺核心要件", "故意不實表示＋誘使錯誤＋取得不法利益。量子計算不屬於網路犯罪類型。", 0]
+        ]},
+        { name: "AI倫理與演算法偏誤", points: [
+          ["演算法偏誤定義", "AI對特定群體系統性產生不公平／不準確結果。", 1],
+          ["再犯風險模型案例", "反映警察執法的種族歧視資料。", 0],
+          ["微軟AI六大倫理法則", "透明、負責任、不傷人類尊嚴等。", 0],
+          ["黑箱AI保護方式", "用營業秘密而非專利，因不需公開技術細節。", 0],
+          ["類神經網路技術辨識", "CNN卷積式、RNN遞迴式、LSTM長短期記憶網路皆屬類神經網路；隨機森林（Random Forest）屬傳統機器學習，不算類神經網路。", 1]
+        ]},
+        { name: "生成式AI與著作權爭議", points: [
+          ["AI訓練資料合理使用爭議", "大量複製既有著作訓練AI引發的爭議。", 0],
+          ["AIGC著作權判斷核心", "須有人類創作／精神構思貢獻，非機器自動生成。", 1],
+          ["AI生成內容登記指南", "須揭露AI使用＋說明人類貢獻。", 0]
+        ]},
+        { name: "電商平台競爭規範", points: [
+          ["平台濫用市場支配地位", "最惠國待遇條款、演算法歧視排序。", 0],
+          ["演算法共謀", "自動化定價默契維持高價，非直接串通。", 1],
+          ["平台壟斷公平交易法疑慮", "排擠競爭、提高進入障礙、損及消費者利益。", 0]
+        ]}
+      ]
+    },
+    {
+      name: "電子商務營運管理", short: "營運管理", count: 49, key: "c4",
+      subtopics: [
+        { name: "電商平台選型策略", points: [
+          ["自建電商平台", "掌握獨立網域、可深度客製API串接ERP/CRM（本質是系統整合System Integration工作），但需自行負擔技術與維運成本。", 0],
+          ["第三方電商平台", "會員與交易資料歸屬平台而非商家，美編自由度有限，通常抽成較高。", 0],
+          ["託管型電商平台", "廠商代為上架、快速上線，適合缺乏技術人員的新創品牌，長期費用隨業績提高。", 0],
+          ["平台評估關鍵因素", "成本預算、平台流量與曝光度、導入速度；社群追蹤人數非評估指標。", 1],
+          ["四種平台優劣對照", "自建／第三方／託管型／社群導購，考試常考四選一情境題。", 1]
+        ]},
+        { name: "UX/UI設計與可用性驗證", points: [
+          ["可用性測試", "觀察使用者操作找出痛點，設計驗證階段即可測試，小樣本5-10人。", 1],
+          ["A/B測試", "量化比較兩版本轉換率成效，大樣本、上線後測試；追蹤指標如CTR點擊率，需統計顯著性（Significance）檢定。", 1],
+          ["單一變項測試原則", "A/B測試一次只能改一個變數，否則無法歸因。", 0],
+          ["視覺層級 Visual Hierarchy", "排版凸顯資訊重要性順序，引導使用者聚焦。", 0],
+          ["現代UX趨勢", "極簡設計、一致性、清晰導引；Flash已於2020年淘汰，跨裝置相容為主流。", 0]
+        ]},
+        { name: "響應式網頁與跨平台開發", points: [
+          ["RWD響應式網頁設計", "CSS媒體查詢、相對單位em/rem/vh/vw、Flexbox/Grid確保跨裝置一致顯示。", 0],
+          ["em vs rem", "em相對父元素字級；rem相對HTML根元素字級。", 1, [
+            ["em", "相對「父元素」的字級大小做縮放，父層字級改變會連動影響。"],
+            ["rem", "root em，相對HTML「根元素」的字級大小，不受父層影響，較容易統一控管。"]
+          ]],
+          ["meta viewport設定", "未設定會導致手機顯示「桌面版被縮小」的典型症狀。", 0],
+          ["Bootstrap", "最常見前端RWD框架，提供網格系統與媒體查詢。", 0],
+          ["跨平台開發框架", "React Native（Meta）、Flutter（Google）、.NET MAUI（Microsoft）。", 1, [
+            ["React Native", "由Meta（Facebook）開發，用JavaScript／React寫出接近原生體驗的App。"],
+            ["Flutter", "由Google開發，用Dart語言，同一套程式碼可編譯成iOS／Android原生應用。"],
+            [".NET MAUI", "由Microsoft開發，延續Xamarin，用C#跨平台開發桌面與行動應用。"]
+          ]]
+        ]},
+        { name: "後台營運管理與AI客服", points: [
+          ["電商後台核心功能", "訂單、庫存、物流、會員、營收統計等管理端功能。", 0],
+          ["權限管理", "限制不同角色僅能存取所需功能，保障資料安全。", 0],
+          ["KPI儀表板", "整合銷售額、訂單數、轉換率等指標即時監控績效。", 0],
+          ["自動化客服／Chatbot", "目標為提升回應速度與顧客體驗，非取代人力；關鍵字回覆FAQ靠NLP（易與OCR文字辨識、RPA流程自動化混淆）。", 1],
+          ["營運分析關鍵指標", "訂單轉換率、顧客回購率、退貨率；公司員工人數不算指標。", 0],
+          ["客服導入成功關鍵", "建立FAQ知識庫、語氣一致、定期訓練AI模型；不可完全取消人工客服。", 0]
+        ]},
+        { name: "跨境電商稅務", points: [
+          ["VAT/GST", "加值稅／商品服務稅，跨境電商最核心稅務議題，台灣稱加值型營業稅。", 1],
+          ["稅籍認定流程", "先確認交易發生地／目的地原則，才能決定適用稅制與稅率。", 0],
+          ["Amazon FBA稅務責任", "海外倉視為當地固定營業場所，賣家需自行申請稅籍並報繳VAT/GST。", 0],
+          ["台灣課徵規則", "跨境電子勞務銷售給境內自然人，需申報5%營業稅。", 0],
+          ["影響稅籍認定因素", "銷售商品類型、交易對象所在地、稅務協定；匯率波動不影響稅率。", 1],
+          ["申報所需資料", "發票、報關單、金流紀錄。", 0]
+        ]},
+        { name: "電商資安與零信任架構", points: [
+          ["資安三要素", "機密性Confidentiality／完整性Integrity／可用性Availability；合法性不屬於此三要素。", 1, [
+            ["機密性 Confidentiality", "資料只能被授權的人存取，防止未授權洩漏。"],
+            ["完整性 Integrity", "資料在傳輸或儲存過程中不被竄改，維持正確、完整。"],
+            ["可用性 Availability", "系統與資料在需要時能正常存取使用，不因攻擊或故障而中斷。"]
+          ]],
+          ["常見攻擊類型", "DDoS分散式阻斷服務、XSS跨網站指令碼、SQL Injection、CSRF跨網站請求偽造。", 1, [
+            ["DDoS", "Distributed Denial of Service，分散式阻斷服務攻擊，用大量流量癱瘓伺服器。"],
+            ["XSS", "Cross-Site Scripting，跨網站指令碼攻擊，在網頁植入惡意腳本竊取資料或劫持行為。"],
+            ["SQL Injection", "資料隱碼攻擊，透過輸入惡意SQL指令，非法存取或竄改資料庫。"],
+            ["CSRF", "Cross-Site Request Forgery，跨網站請求偽造，冒用已登入使用者身分發出非本意的請求。"]
+          ]],
+          ["SSL/TLS", "加密傳輸＋伺服器身份驗證，是HTTPS付款安全的核心技術。", 0],
+          ["SQL Injection防禦", "參數化查詢（Prepared Statement）＋輸入格式驗證；傳統防火牆無法防禦此類應用層攻擊。", 0],
+          ["零信任 Zero Trust", "核心理念：永不信任、持續驗證，不分內外部。", 1],
+          ["最小權限原則 PoLP", "僅授予完成任務所需的最低權限。", 0],
+          ["公共Wi-Fi風險", "中間人攻擊MITM，封包被攔截竊取登入資訊。", 0],
+          ["防詐技術", "OTP驗證碼、交易風險評分系統、黑白名單比對；聊天客服不屬於防詐核心技術。", 0],
+          ["AI驅動威脅偵測", "行為分析＋機器學習偵測異常交易，非僅流量分析。", 0]
+        ]}
+      ]
+    },
+    {
+      name: "網路行銷概念及AI應用", short: "網路行銷", count: 42, key: "c5",
+      subtopics: [
+        { name: "顧客洞察與行動行銷基礎", points: [
+          ["80-20法則／帕累托法則", "顧客關係管理（CRM）情境下常提到：20%顧客貢獻80%利潤，判斷優質顧客價值。", 0],
+          ["定址服務 LBS", "Location Based Service，依地理位置即時推播行銷簡訊。", 0],
+          ["第一關鍵時刻 FMOT", "P&G提出，消費者在貨架前3~7秒的品牌決策時刻。", 1],
+          ["新眼球經濟／行動行銷特性", "隨處性Ubiquity、個人化精準鎖定、突破時地限制。", 0],
+          ["全球化市場效應", "網路無遠弗屆，讓小型企業有跨國競爭機會。", 0]
+        ]},
+        { name: "傳統行銷手法辨析", points: [
+          ["飢餓行銷", "Hunger Marketing，賣完為止、稀少訴求製造話題。", 1],
+          ["病毒式行銷", "Word-of-mouth，人傳人零成本擴散。", 1],
+          ["話題行銷／蜂鳴行銷", "Buzz Marketing，企業主動在討論區引爆話題。", 1],
+          ["內容行銷", "先給價值後談銷售，須「小心藏好」銷售意圖，長期降低CAC。", 0],
+          ["原生廣告", "Native Advertising，與內容無縫結合不易被發現。", 0]
+        ]},
+        { name: "廣告計費與成效評估指標", points: [
+          ["SERP", "Search Engine Results Page，SEO終極目標是排名第一。", 0],
+          ["轉換率 CR", "成交次數÷廣告點擊總數。", 0],
+          ["關鍵字廣告計費", "PPC/CPC按點擊付費 vs CPM千次曝光 vs CPA/CPS實際轉換付費。", 1, [
+            ["PPC／CPC", "Pay／Cost Per Click，按點擊付費，關鍵字廣告最主流的計費方式。"],
+            ["CPM", "Cost Per Mille，千次曝光計費，適合品牌曝光型廣告，不看是否被點擊。"],
+            ["CPA／CPS", "Cost Per Action／Sale，依實際轉換（成交、註冊）才付費，廣告主風險最低。"]
+          ]],
+          ["人氣／獲利／內容品質指標", "流量、點閱率 vs 轉換率 vs 跳出率，三者常互為干擾選項。", 0, [
+            ["人氣指標", "流量、點閱率，反映有多少人看到／點進來。"],
+            ["獲利指標", "轉換率，反映有多少人真的完成購買／目標行為。"],
+            ["內容品質指標", "跳出率，反映內容是否留得住訪客。"]
+          ]],
+          ["KPI vs AOV/CAC/ROAS", "KPI是「總稱」，AOV平均訂單價值、CAC客戶購置成本、ROAS廣告收益比是單一指標。", 1, [
+            ["KPI", "Key Performance Indicator，關鍵績效指標，是「泛稱」概念，不是單一具體數字。"],
+            ["AOV", "Average Order Value，平均訂單價值。"],
+            ["CAC", "Customer Acquisition Cost，取得一位新客戶平均花費的成本。"],
+            ["ROAS", "Return on Ad Spend，廣告收益比，每花1元廣告費帶回多少營收。"]
+          ]]
+        ]},
+        { name: "社群與短影音行銷", points: [
+          ["KOC vs KOL", "KOC關鍵意見消費者 vs KOL意見領袖。", 1, [
+            ["KOC", "Key Opinion Consumer，關鍵意見消費者，素人／真實用戶身分分享，可信度來自「跟我一樣」。"],
+            ["KOL", "Key Opinion Leader，意見領袖，靠專業發言權與知名度／獨特風格帶動影響力。"]
+          ]],
+          ["社群行銷四大特性", "分享性、多元性、黏著性、傳染性；沒有「複製性」。", 0],
+          ["同溫層現象", "echo chamber，選擇性接收同溫觀點。", 0],
+          ["TikTok vs Instagram", "TikTok內容導向瀑布流推播（不靠追蹤關係）；IG需高質感、看洞察報告數據。", 1, [
+            ["TikTok", "內容導向瀑布流推播，不靠追蹤關係決定曝光，素人也能因為內容好被大量看見。"],
+            ["Instagram", "偏向關係導向，內容需較高質感，成效要靠「洞察報告」查瀏覽／觸及數據。"]
+          ]],
+          ["短影音開頭3秒法則", "對抗注意力碎片化。", 0],
+          ["微電影時長區間", "廣告宣傳影片約30~60秒；紀錄片／微電影則多為4~10分鐘。", 0],
+          ["TikTok演算法排名依據", "觀看時長、互動率、主題相關性；非粉絲數、非地理位置。", 0],
+          ["Instagram Reels演算法依據", "以觀看時長、分享數與互動活躍度為排名標準，跟TikTok的判準組合不完全相同。", 1]
+        ]},
+        { name: "直播與網紅經濟", points: [
+          ["直播行銷＝素民行銷平台", "進入門檻低，僅需手機＋網路。", 0],
+          ["直播三特性", "即時性、互動性；非客製化、非全球化為核心賣點。", 0],
+          ["KOL影響力核心", "專業發言權＋獨特風格引發共鳴，非官方認證背書。", 0],
+          ["網紅行銷價值", "社群分眾化趨勢下幫助品牌精準曝光目標族群。", 0]
+        ]},
+        { name: "生成式AI與數據驅動行銷（核心考點）", points: [
+          ["生成式AI趨勢", "生成式最佳化（Generative Optimization）：內容快速生成＋數據分析精準鎖定受眾。題庫僅考出生成式AI三大趨勢中的這一項。", 0],
+          ["生成式AI風險", "答案可能錯誤／偏見、版權問題、搜尋結果受商業利益影響；非「演算法簡化」。", 1],
+          ["AI自動化行銷", "透過大數據做一對一行銷，避免錯誤投放浪費預算。", 0],
+          ["DDDM數據驅動決策", "核心步驟：原始數據→洞察Insights→數據應用（轉化為實際行動）。", 1],
+          ["GA4流量分類", "Organic Search自然搜尋 vs Referral外站連結 vs Direct/None來源不明。", 0],
+          ["GA4最佳實務", "設定KPI目標→規劃UTM標記追蹤轉換→依洞察調整策略；非被動看預設報表。", 0],
+          ["GA4進階分析組合", "事件級原始資料匯出至BigQuery（雲端資料倉儲）＋與Google Ads串接，做更深度的分析與投放優化。", 0]
+        ]}
+      ]
+    },
+    {
+      name: "企業電子化與AI應用範疇", short: "企業電子化", count: 35, key: "c6",
+      subtopics: [
+        { name: "企業電子化基礎與三大核心系統", points: [
+          ["企業電子化本質", "不只是買設備、建網站，是流程與商業模式的資訊技術改造。", 0],
+          ["B2B/B2C電子化型態辨識", "線上採購系統向供應商下單即屬B2B。", 0],
+          ["ERP核心模組範圍", "財務會計、人資、採購、生產、庫存＝內部營運；不含前端行銷銷售。", 1],
+          ["CRM功能範圍", "顧客資料、關係維護、服務改善；不含供應鏈／庫存補貨。", 0],
+          ["SCM定位", "供應商、採購、庫存、物流的供應鏈流程。", 0],
+          ["ERP／CRM／SCM三者關係", "ERP為整合平台，CRM、SCM為其模組或協作系統。", 1],
+          ["分析型CRM的價值", "客戶區隔、資料洞察、行銷ROI評估；非即時客服。", 0]
+        ]},
+        { name: "數位轉型與流程變革層次", points: [
+          ["數位化 Digitization", "紙本轉電子檔案，最低層次。", 1],
+          ["電子化 Digitalization", "用系統／資料庫改造流程，如線上申請取代紙本，效率提升但商業模式未變。", 1],
+          ["數位轉型 Digital Transformation", "根本性改變商業模式、組織文化、客戶體驗，三者層次遞進。", 1],
+          ["轉型 vs 流程自動化", "前者重新設計商業模式，後者只是既有流程換系統執行。", 0, [
+            ["數位轉型", "根本性改變商業模式、組織文化、客戶體驗，是策略層級的改變。"],
+            ["流程自動化", "既有流程直接換成系統執行，效率提升但商業模式本身沒有改變。"]
+          ]],
+          ["RPA機器人流程自動化", "模擬人類操作介面重複性動作，不修改底層系統程式碼。", 0],
+          ["BPR企業流程再造", "徹底重新設計流程以求重大改善，非小幅優化。", 0]
+        ]},
+        { name: "雲端服務三模式", points: [
+          ["SaaS軟體即服務", "網路交付、免安裝、訂閱付費，內建行業最佳實踐。典型代表：CRM軟體（Salesforce、HubSpot）、辦公協作套件（Microsoft 365、Google Workspace）、人資系統（Workday、SuccessFactors）。", 1],
+          ["PaaS平台即服務", "統一應用程式執行環境，服務商集中管理維護，多企業共用降低維運成本。", 1],
+          ["IaaS基礎架構即服務", "虛擬化運算／儲存／網路資源，彈性擴縮，企業仍需自行管理系統架構、資安與備援責任非完全由業者承擔。典型代表：Amazon EC2、Google Compute Engine（提供虛擬機器）。", 1],
+          ["企業導入SaaS策略", "善用內建最佳實踐做適度BPR，而非要求大量客製化。", 0]
+        ]},
+        { name: "智慧營運、物聯網與邊緣運算", points: [
+          ["IoT四層模型", "感知層（Perception，類比轉數位訊號＋初步預處理）／網路層（Network）／應用層（Application）／分析層（Analysis），常考「哪一層負責什麼」四選一。", 1],
+          ["IoT設備核心能力", "持續感知／偵測周遭環境數據，先於運算與儲存。", 0],
+          ["邊緣運算節點職責", "邊緣節點（Edge Node）就近即時輕量處理、IoT連接點、數據預處理；不負責大規模長期儲存。", 0],
+          ["智慧製造應用", "預測性維護、供應鏈即時可視化、AI瑕疵檢測。", 0]
+        ]},
+        { name: "AI／機器學習在企業的應用", points: [
+          ["機器學習四大類型", "監督式學習（用歷史標籤數據訓練，如銷售預測）／非監督式學習／半監督式學習／強化學習（Reinforcement Learning）。", 1],
+          ["CNN vs RNN/LSTM", "CNN擅長影像空間特徵；RNN/LSTM擅長時序／長文本序列；同類考點還會混入GAN生成對抗網路、Transformer當干擾選項。", 1, [
+            ["CNN", "Convolutional Neural Network，卷積神經網路，擅長處理影像的空間特徵。"],
+            ["RNN／LSTM", "Recurrent Neural Network／Long Short-Term Memory，擅長處理時序資料或長文本序列。"],
+            ["GAN（干擾項）", "Generative Adversarial Network，生成對抗網路，用於生成擬真內容（圖像等），非本題正解方向。"],
+            ["Transformer（干擾項）", "現代NLP／LLM的主流架構，非CNN／RNN這組對比的答案。"]
+          ]],
+          ["AI偏見問題", "訓練資料歷史偏見會被模型延續甚至放大，如貸款核准率案例。", 0],
+          ["AI在零售業應用", "個人化推薦、智慧庫存、AI導覽；純報表分析不算AI應用。", 0]
+        ]},
+        { name: "大數據、資料治理與AI倫理", points: [
+          ["大數據5V特性", "Volume、Variety、Velocity、Veracity、Value；注意選項常混入「Validation」等假特性。", 1, [
+            ["Volume", "資料量：資料規模非常龐大。"],
+            ["Variety", "多樣性：資料型態多元，含結構化、半結構化、非結構化資料。"],
+            ["Velocity", "速度：資料產生與需要處理的速度非常快。"],
+            ["Veracity", "真實性：資料的準確度與可信度。"],
+            ["Value", "價值：資料經過分析後能創造的實際價值。"]
+          ]],
+          ["HDFS分散式檔案系統", "Hadoop核心儲存元件，多台低成本伺服器協同儲存巨量資料。", 0],
+          ["ETL vs ELT", "差在資料轉換發生的時間點與位置：先轉換再載入 vs 先載入再轉換。", 1, [
+            ["ETL", "Extract-Transform-Load，先從來源系統抽取資料、轉換格式，再載入目標資料庫／倉儲。"],
+            ["ELT", "Extract-Load-Transform，先把原始資料載入，再於目標端進行轉換，較適合大數據雲端架構。"]
+          ]],
+          ["資料治理核心目標", "建立數據品質、安全、合規的管理框架與決策權責，非單純技術效能。", 0],
+          ["個資法規影響", "GDPR／台灣個資法：需明確用戶同意、查看權、被遺忘權、隱私影響評估。", 0],
+          ["數據外部性", "一人資料被使用會影響未參與的第三方，如健康資料訓練AI造福其他患者。", 0],
+          ["AI倫理兩大核心議題", "避免偏見歧視、保護隱私尊嚴；技術無法自動解決倫理問題，透明反而提升信任。", 0]
+        ]}
+      ]
+    }
+  ];
+
+  var COURSE_NAME = "【TQC】電子商務與AI應用-專業級";
+
+  // ---------- derive stats ----------
+  var totalQuestions = 0, totalSub = 0, totalLeaf = 0, totalHot = 0;
+  DATA.forEach(function (cat) {
+    totalQuestions += cat.count;
+    cat.subtopics.forEach(function (sub) {
+      totalSub++;
+      sub.points.forEach(function (p) { totalLeaf++; if (p[2]) totalHot++; });
+    });
+  });
+
+  document.getElementById("stat-line").textContent = "6大類・" + totalSub + "子主題・共" + totalQuestions + "題";
+  document.getElementById("foot-total").textContent = totalQuestions;
+
+  // ---------- jump nav (tabs) ----------
+  var jumpnav = document.getElementById("jumpnav");
+
+  var overviewChip = document.createElement("button");
+  overviewChip.type = "button";
+  overviewChip.className = "jumpchip";
+  overviewChip.setAttribute("data-tab", "overview");
+  overviewChip.textContent = "總覽";
+  jumpnav.appendChild(overviewChip);
+
+  DATA.forEach(function (cat, i) {
+    var a = document.createElement("button");
+    a.type = "button";
+    a.className = "jumpchip";
+    a.setAttribute("data-tab", String(i));
+    a.innerHTML = '<span class="dot" style="background:var(--' + cat.key + ')"></span>' + (i + 1) + ". " + escapeHtml(cat.short || cat.name);
+    jumpnav.appendChild(a);
+  });
+
+  // ---------- plan table ----------
+  var planTable = document.getElementById("plan-table");
+  var header = document.createElement("div");
+  header.className = "plan-row";
+  header.innerHTML = "<span></span><span>單元</span><span class='num'>題數</span><span class='num'>比重</span><span class='num'>子主題</span><span class='num'>重點★</span><span class='num'>建議時數</span>";
+  planTable.appendChild(header);
+
+  var hoursCells = []; // [{el, fraction}] for the hours-input recompute
+
+  DATA.forEach(function (cat, i) {
+    var hotCount = 0, subCount = cat.subtopics.length;
+    cat.subtopics.forEach(function (s) { s.points.forEach(function (p) { if (p[2]) hotCount++; }); });
+    var fraction = cat.count / totalQuestions;
+    var pct = Math.round(fraction * 100);
+
+    var row = document.createElement("a");
+    row.className = "plan-row";
+    row.href = "#unit-" + i;
+    row.setAttribute("data-tab", String(i));
+    row.innerHTML =
+      '<span class="dot" style="background:var(--' + cat.key + ')"></span>' +
+      '<span class="name">' + (i + 1) + ". " + escapeHtml(cat.name) + "</span>" +
+      '<span class="num">' + cat.count + "題</span>" +
+      '<span class="num">約 ' + pct + "%</span>" +
+      '<span class="num">' + subCount + "</span>" +
+      '<span class="num">' + hotCount + "</span>" +
+      '<span class="num hours-cell">—</span>';
+    planTable.appendChild(row);
+    hoursCells.push({ el: row.querySelector(".hours-cell"), fraction: fraction });
+
+    var bar = document.createElement("div");
+    bar.className = "weightbar";
+    bar.innerHTML = '<span style="width:' + pct + '%; background:var(--' + cat.key + ')"></span>';
+    planTable.appendChild(bar);
+  });
+
+  var hoursInput = document.getElementById("hours-input");
+  hoursInput.addEventListener("input", function () {
+    var total = parseFloat(hoursInput.value);
+    var valid = !isNaN(total) && total > 0;
+    hoursCells.forEach(function (c) {
+      c.el.textContent = valid ? (Math.round(total * c.fraction * 2) / 2).toFixed(1) + "h" : "—";
+    });
+  });
+
+  // ---------- units ----------
+  var unitsEl = document.getElementById("units");
+  DATA.forEach(function (cat, ci) {
+    var section = document.createElement("section");
+    section.className = "unit";
+    section.id = "unit-" + ci;
+    section.style.setProperty("--u-color", "var(--" + cat.key + ")");
+    section.style.setProperty("--u-tint", "var(--" + cat.key + "-tint)");
+
+    var head = document.createElement("div");
+    head.className = "unit-head";
+    var subCount = cat.subtopics.length;
+    head.innerHTML =
+      '<span class="idx">' + (ci + 1) + "</span>" +
+      "<h2>" + cat.name + "</h2>" +
+      '<span class="unit-meta">' + cat.count + "題・" + subCount + "個子主題</span>" +
+      '<button class="unit-copy" data-ci="' + ci + '">複製本單元大綱</button>';
+    section.appendChild(head);
+
+    var grid = document.createElement("div");
+    grid.className = "subgrid";
+    cat.subtopics.forEach(function (sub) {
+      var card = document.createElement("div");
+      card.className = "subcard";
+      var h3 = document.createElement("h3");
+      h3.textContent = sub.name;
+      card.appendChild(h3);
+      var ul = document.createElement("ul");
+      sub.points.forEach(function (p) {
+        var terms = p[3]; // optional [[term, explanation], ...] breakdown
+        var li = document.createElement("li");
+        li.className = "pt" + (p[2] ? " hot" : "") + (terms ? " expandable" : "");
+        var termsText = terms ? terms.map(function (t) { return t[0] + " " + t[1]; }).join(" ") : "";
+        li.setAttribute("data-text", (p[0] + " " + p[1] + " " + termsText).toLowerCase());
+        li.innerHTML =
+          '<div class="pt-row">' +
+          (p[2] ? '<span class="star">★</span>' : "") +
+          "<b>" + escapeHtml(p[0]) + "</b>　" + escapeHtml(p[1]) +
+          (terms ? '<span class="expand-mark" aria-hidden="true">展開<span class="chev">▾</span></span>' : "") +
+          "</div>";
+        if (terms) {
+          var sub2 = document.createElement("ul");
+          sub2.className = "sub-terms";
+          terms.forEach(function (t) {
+            var li2 = document.createElement("li");
+            li2.innerHTML = "<b>" + escapeHtml(t[0]) + "</b>　" + escapeHtml(t[1]);
+            sub2.appendChild(li2);
+          });
+          li.appendChild(sub2);
+          li.setAttribute("tabindex", "0");
+          li.setAttribute("role", "button");
+          li.setAttribute("aria-expanded", "false");
+          li.addEventListener("click", function () { toggleExpand(li); });
+          li.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleExpand(li); }
+          });
+        }
+        ul.appendChild(li);
+      });
+      card.appendChild(ul);
+      grid.appendChild(card);
+    });
+    section.appendChild(grid);
+    unitsEl.appendChild(section);
+  });
+
+  // ---------- tabs ----------
+  var currentTab = "overview";
+
+  function setActiveTab(tabId, opts) {
+    opts = opts || {};
+    currentTab = tabId;
+    var isOverview = tabId === "overview";
+
+    document.body.classList.toggle("tab-single", !isOverview);
+
+    DATA.forEach(function (cat, i) {
+      var el = document.getElementById("unit-" + i);
+      var show = isOverview || String(i) === String(tabId);
+      el.style.display = show ? "" : "none";
+      el.classList.toggle("single", !isOverview && show);
+    });
+
+    Array.prototype.forEach.call(jumpnav.querySelectorAll(".jumpchip"), function (chip) {
+      chip.classList.toggle("active", chip.getAttribute("data-tab") === String(tabId));
+    });
+
+    if (!opts.skipHash) {
+      history.replaceState(null, "", "#" + (isOverview ? "overview" : "unit-" + tabId));
+    }
+    applySearchFilter();
+    if (!opts.skipScroll) window.scrollTo({ top: 0, behavior: "auto" });
+  }
+
+  document.addEventListener("click", function (e) {
+    var tabEl = e.target.closest("[data-tab]");
+    if (tabEl) {
+      e.preventDefault();
+      setActiveTab(tabEl.getAttribute("data-tab"));
+    }
+  });
+
+  document.getElementById("btn-back").addEventListener("click", function () {
+    setActiveTab("overview");
+  });
+
+  function initTabFromHash() {
+    var h = location.hash.replace("#", "");
+    var m = h.match(/^unit-(\d+)$/);
+    if (m && DATA[parseInt(m[1], 10)]) {
+      setActiveTab(m[1], { skipHash: true, skipScroll: true });
+    } else {
+      setActiveTab("overview", { skipHash: true, skipScroll: true });
+    }
+  }
+
+  function toggleExpand(li) {
+    var isOpen = li.classList.toggle("expanded");
+    li.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  // ---------- copy outline ----------
+  function outlineText(ci) {
+    var cat = DATA[ci];
+    var lines = [cat.name + "（" + cat.count + "題）", ""];
+    cat.subtopics.forEach(function (sub) {
+      lines.push("■ " + sub.name);
+      sub.points.forEach(function (p) {
+        lines.push("　" + (p[2] ? "★ " : "・") + p[0] + "：" + p[1]);
+        if (p[3]) {
+          p[3].forEach(function (t) { lines.push("　　- " + t[0] + "：" + t[1]); });
+        }
+      });
+      lines.push("");
+    });
+    return lines.join("\n");
+  }
+  function copyText(text, btn) {
+    var done = function () {
+      var old = btn.textContent;
+      btn.textContent = "已複製 ✓";
+      setTimeout(function () { btn.textContent = old; }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text); done(); });
+    } else {
+      fallbackCopy(text); done();
+    }
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".unit-copy");
+    if (btn) copyText(outlineText(parseInt(btn.getAttribute("data-ci"), 10)), btn);
+  });
+
+  document.getElementById("btn-copyall").addEventListener("click", function (e) {
+    var all = DATA.map(function (_, i) { return outlineText(i); }).join("\n");
+    copyText(COURSE_NAME + "　備課大綱\n\n" + all, e.currentTarget);
+  });
+
+  // ---------- expand/collapse all term breakdowns ----------
+  var termsExpanded = false;
+  document.getElementById("btn-expand-terms").addEventListener("click", function (e) {
+    termsExpanded = !termsExpanded;
+    e.currentTarget.textContent = termsExpanded ? "▴ 收合全部名詞說明" : "▾ 展開全部名詞說明";
+    Array.prototype.forEach.call(document.querySelectorAll(".subcard li.expandable"), function (li) {
+      li.classList.toggle("expanded", termsExpanded);
+      li.classList.remove("auto-expanded");
+      li.setAttribute("aria-expanded", termsExpanded ? "true" : "false");
+    });
+  });
+
+  // ---------- hot filter ----------
+  var hotOn = false;
+  document.getElementById("btn-hot").addEventListener("click", function (e) {
+    hotOn = !hotOn;
+    e.currentTarget.classList.toggle("active", hotOn);
+    Array.prototype.forEach.call(document.querySelectorAll(".subcard li"), function (li) {
+      li.classList.toggle("pt-dim", hotOn && !li.classList.contains("hot"));
+    });
+  });
+
+  // ---------- search ----------
+  var searchInput = document.getElementById("search");
+
+  function applySearchFilter() {
+    var q = searchInput.value.trim().toLowerCase();
+    var anyMatch = false;
+    var isOverview = currentTab === "overview";
+
+    DATA.forEach(function (cat, i) {
+      var unit = document.getElementById("unit-" + i);
+      var tabEligible = isOverview || String(i) === String(currentTab);
+      if (!tabEligible) return; // leave hidden by the tab switch, don't touch
+
+      var unitHasMatch = false;
+      Array.prototype.forEach.call(unit.querySelectorAll(".subcard"), function (card) {
+        var cardHasMatch = false;
+        // .pt only — a plain "li" selector would also match the nested
+        // <li> inside .sub-terms, which have no data-text and crash .indexOf.
+        Array.prototype.forEach.call(card.querySelectorAll("li.pt"), function (li) {
+          var isMatch = q && li.getAttribute("data-text").indexOf(q) !== -1;
+          li.classList.toggle("pt-match", !!isMatch);
+          li.classList.toggle("pt-dim", !!q && !isMatch);
+          if (isMatch) {
+            cardHasMatch = true;
+            anyMatch = true;
+            // reveal the matched term's breakdown automatically; remember
+            // it was auto-opened so clearing the search can close it again
+            if (li.classList.contains("expandable") && !li.classList.contains("expanded")) {
+              li.classList.add("expanded", "auto-expanded");
+              li.setAttribute("aria-expanded", "true");
+            }
+          } else if (li.classList.contains("auto-expanded")) {
+            li.classList.remove("expanded", "auto-expanded");
+            li.setAttribute("aria-expanded", "false");
+          }
+        });
+        card.style.display = (!q || cardHasMatch) ? "" : "none";
+        if (cardHasMatch) unitHasMatch = true;
+      });
+
+      // In single-unit tab mode there's only one unit on screen — never hide
+      // the whole section (that would leave a blank page); only the overview
+      // tab hides whole units that have zero matches among many.
+      if (isOverview) unit.style.display = (!q || unitHasMatch) ? "" : "none";
+    });
+
+    document.getElementById("no-results").style.display = (q && !anyMatch) ? "block" : "none";
+    document.getElementById("no-results-q").textContent = q;
+  }
+
+  searchInput.addEventListener("input", applySearchFilter);
+
+  // must run last — depends on searchInput + all unit sections existing
+  initTabFromHash();
+})();
+</script>
